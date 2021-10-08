@@ -1,33 +1,36 @@
 package com.itea.task1
 
+case class SomeClass(aa: Int, bb: Boolean, cc: Char, ss: String)
+
 object JsonParserApp extends App {
 
-  case class SomeClass(aa: Int, bb: Boolean, cc: Char, ss: String)
+  print(
+    toJson(SomeClass(123, true, 'i', "abc")) )
 
-  val clazz = SomeClass(123, true, 'i', "abc")
+  /**
+   * @param clazz
+   * @return
+   */
+  def toJson(clazz: SomeClass): String = { // TODO: need as AnyRef param
+    val iteratorClazz = clazz.productElementNames
 
-  var iteratorClazz = clazz.productElementNames
-  var indexElement: Int = 0
-
-  var json: String = clazz.getClass.getSimpleName + ": {"
-  while (iteratorClazz.hasNext) {
-    val nameElement: String = iteratorClazz.next()
-    val valueElement: Any = clazz.productElement(indexElement)
-    json = json + elementToJson(nameElement, valueElement, indexElement)
-    indexElement += 1
+    var indexElement: Int = 0
+    var json: String = clazz.getClass.getSimpleName + ": {"
+    while (iteratorClazz.hasNext) {
+      json = json + elementToJson(iteratorClazz.next(), clazz.productElement(indexElement), indexElement)
+      indexElement += 1
+    }
+    json = json + "\n}"
+    json
   }
-  json = json + "\n}"
 
-  print( json )
-
-
-  def elementToJson(nameElement: String, valueElement: Any, indexElement: Int): String = {
+  private def elementToJson(nameElement: String, valueElement: Any, indexElement: Int): String = {
     var str: String = "\n  \"" + nameElement + "\": " + valueToJson(valueElement)
     if (indexElement != 0) str = "," + str
     str
   }
 
-  def valueToJson(valueElement: Any): String = valueElement.getClass.getName match {
+  private def valueToJson(valueElement: Any): String = valueElement.getClass.getName match {
     case "java.lang.Integer" => s"""$valueElement"""
     case "java.lang.Boolean" => s"""$valueElement"""
     case "java.lang.Character" => s"""\"$valueElement\""""
