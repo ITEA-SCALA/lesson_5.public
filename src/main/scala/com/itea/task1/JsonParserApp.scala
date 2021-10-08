@@ -5,7 +5,7 @@ case class SomeClass(aa: Int, bb: Boolean, cc: Char, ss: String)
 object JsonParserApp extends App {
 
   print(
-    toJson(SomeClass(123, true, 'i', "abc")) )
+    toJson( SomeClass(123, true, 'i', "abc") ))
 
   /**
    * @param clazz
