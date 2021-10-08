@@ -7,29 +7,21 @@ object JsonParserApp extends App {
   val clazz = SomeClass(123, true, 'i', "abc")
 
   var iteratorClazz = clazz.productElementNames
-  var countElement: Int = 0
+  var indexElement: Int = 0
 
   print(clazz.getClass.getSimpleName + ": {")
   while (iteratorClazz.hasNext) {
     val nameElement: String = iteratorClazz.next()
-    val valueElement: Any = clazz.productElement(countElement)
-    print(elementToJson(nameElement, valueElement, countElement))
-    countElement += 1
+    val valueElement: Any = clazz.productElement(indexElement)
+    print( elementToJson(nameElement, valueElement, indexElement) )
+    indexElement += 1
   }
   print("\n}")
 
 
-  def productElementType(value: Any): String = value.getClass.getName match {
-    case "java.lang.Integer" => "Int"
-    case "java.lang.Boolean" => "Boolean"
-    case "java.lang.Character" => "Char"
-    case "java.lang.String" => "String"
-    case _ => "???"
-  }
-
-  def elementToJson(nameElement: String, valueElement: Any, countElement: Int): String = {
+  def elementToJson(nameElement: String, valueElement: Any, indexElement: Int): String = {
     var str: String = "\n  \"" + nameElement + "\": " + valueToJson(valueElement)
-    if (countElement != 0) str = "," + str
+    if (indexElement != 0) str = "," + str
     str
   }
 
