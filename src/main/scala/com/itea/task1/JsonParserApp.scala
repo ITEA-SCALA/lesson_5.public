@@ -1,6 +1,6 @@
 package com.itea.task1
 
-object ClassToJson extends App {
+object JsonParserApp extends App {
 
   case class SomeClass(aa: Int, bb: Boolean, cc: Char, ss: String)
 
