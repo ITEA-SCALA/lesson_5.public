@@ -9,14 +9,16 @@ object JsonParserApp extends App {
   var iteratorClazz = clazz.productElementNames
   var indexElement: Int = 0
 
-  print(clazz.getClass.getSimpleName + ": {")
+  var json: String = clazz.getClass.getSimpleName + ": {"
   while (iteratorClazz.hasNext) {
     val nameElement: String = iteratorClazz.next()
     val valueElement: Any = clazz.productElement(indexElement)
-    print( elementToJson(nameElement, valueElement, indexElement) )
+    json = json + elementToJson(nameElement, valueElement, indexElement)
     indexElement += 1
   }
-  print("\n}")
+  json = json + "\n}"
+
+  print( json )
 
 
   def elementToJson(nameElement: String, valueElement: Any, indexElement: Int): String = {
