@@ -10,11 +10,11 @@ sealed trait BinaryTree {
   def getOrElse() = this match {
     case b: Branch => {
       print("b=")
-      b
+//      b
     }
     case l: Leaf => {
       print("l=")
-      l
+      l.v
     }
   }
 }
@@ -22,11 +22,13 @@ sealed trait BinaryTree {
 case class Leaf(v: Int) extends BinaryTree { //TODO:  последний элемент (все значения будут в листках)
   override def toString: String = {
     s"'$v'"
+//    s"${getOrElse()}"
   }
 }
-case class Branch(left: BinaryTree, right: BinaryTree) extends BinaryTree { //
+case class Branch(left: BinaryTree, right: BinaryTree) extends BinaryTree {
   override def toString: String = {
     s"$right $left"
+//    s"B={$right} L=$left"
   }
 }
 
@@ -38,35 +40,29 @@ object BinaryTreeApp extends App {
         5 4
    */
 
-//  Branch( Branch(Left(5), Left(4)), Left(3)).print()
-  val leaf4: Leaf = Leaf(4)
-  val leaf5: Leaf = Leaf(5)
-
-  val branch: Branch = Branch(leaf5, leaf4)
-  val leaf3: Leaf = Leaf(3)
-  val binaryTree: Branch = Branch(branch, leaf3)
-
+////  Branch( Branch(Left(5), Left(4)), Left(3)).print()
   //
-//  println( binaryTree ) // '3' '4' '5'
-//
-//  println( leaf4.getOrElse() ) // l='4'
-//  println( leaf5.getOrElse() ) // l='5'
-//  println( leaf3.getOrElse() ) // l='3'
-//  println( binaryTree.getOrElse() ) // b='3' '4' '5'
-
+  // {'1', L={'2', L={'4'}, B={'5'}}, B={'3', L={'6', L={'8'}}, B={'7', B={'9'}}}}
   //
-  println( binaryTree ) // '3' '4' '5'
+  // Branch(
+  //        Branch(
+  //               Branch(
+  //                      Leaf(4), Leaf(5)),
+  //                      Leaf(2)),
+  //               Branch(
+  //                      Branch(
+  //                             Branch(
+  //                                    Leaf(6), Leaf(7)),
+  //                             Leaf(8)),
+  //                      Leaf(3)))
 
-  val binaryTreeLeft = binaryTree.left
-  println( binaryTreeLeft ) // '4' '5'
-//  val l1 = binaryTreeLeft.getOrElse()
-//  println( l1 )
-//  val l2 = l1.getOrElse()
-//  println( l2 )
+  val branch: Branch = Branch(Branch(Branch(Leaf(4), Leaf(5)), Leaf(2)), Branch(Branch(Branch(Leaf(6), Leaf(7)), Leaf(8)), Leaf(3)))
 
-//  println( binaryTreeLeft.getOrElse().getOrElse().getOrElse() ) // b=b=b='4' '5'
 
-  val binaryTreeRight = binaryTree.right
-  println( binaryTreeRight ) // '3'
-//  println( binaryTreeRight.getOrElse() )
+  println( branch ) // '3' '8' '7' '6' '2' '5' '4'
+
+//  println( branch.getOrElse() ) // b=()
+  println( branch.left ) // '2' '5' '4'
+  println( branch.right ) // '3' '8' '7' '6'
+
 }
