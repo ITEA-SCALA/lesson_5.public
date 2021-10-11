@@ -33,12 +33,6 @@ class BinaryTreeMain2 {
           8       9
 */
         Node root = new Node(1);
-/*
-[1, 2, 4]
-[1, 2, 5]
-[1, 3, 6, 8]
-[1, 3, 7, 9]
- */
         root.left = new Node(2);
         root.left.left = new Node(4);
         root.right = new Node(3);
@@ -48,15 +42,13 @@ class BinaryTreeMain2 {
         root.right.right = new Node(7);
         root.right.right.right = new Node(9);
 
-        // Основная функция для печати путей от корневого узла до каждого листового узла
-        printTraverse(root, new ArrayList());
-//        System.out.println(traverses);
-//        System.out.println();
-
-        for (List arr: getTraverseAsTree(traverses)) System.out.println(arr);
+        for (List arr: getTraverseAsTree(root)) System.out.println(arr);
     }
 
-    static List<List> getTraverseAsTree(List<List> traverses) {
+    static List<List> getTraverseAsTree(Node root) {
+        getTraverse(root, new ArrayList());
+//        System.out.println(traverses);
+
         List<List> allTraversePrint = new ArrayList<>();
 
         for (int iTraversePrint = 0; iTraversePrint < 10; iTraversePrint++) {
@@ -73,15 +65,21 @@ class BinaryTreeMain2 {
         return allTraversePrint;
     }
 
-    // Рекурсивная функция для поиска путей от корневого узла до каждого листового узла
-    static void printTraverse(Node node, List path) {
+    /*
+      Рекурсивная функция для поиска путей от корневого узла до каждого листового узла
+        [1, 2, 4]
+        [1, 2, 5]
+        [1, 3, 6, 8]
+        [1, 3, 7, 9]
+     */
+    static void getTraverse(Node node, List path) {
         if (node == null) return; // base case
 
         path.add(node.data); // включить текущий узел в путь
         if (node.left == null && node.right == null) traverses.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден, вывести путь
 
-        printTraverse(node.left, path); // base case
-        printTraverse(node.right, path); // base case
+        getTraverse(node.left, path); // base case
+        getTraverse(node.right, path); // base case
 
         path.remove( path.size()-1 ); // backtrack: удалить текущий узел после левого и правого поддерева.
     }
