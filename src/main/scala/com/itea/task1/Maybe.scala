@@ -19,7 +19,12 @@ sealed trait Maybe {
 case object None extends Maybe //TODO: use Maybe as Option in Scala
 case class SomeInt(value: Int) extends Maybe //TODO: use Maybe as Option in Scala
 
-object Main extends App {
+object MaybeMain extends App {
 //  val maybeInt: Maybe[Int] = None
-  val maybeInt: Maybe = None
+  val maybeInt: Maybe = None // None
+//  println(maybeInt)
+  println( "Maybe = " + maybeInt.getOrElse(0) ) // Maybe = 0
+
+  val maybeInt2: Maybe = SomeInt(100)
+  println( "Maybe(2) = " + maybeInt2.getOrElse(0) ) // Maybe(2) = 100
 }
