@@ -20,10 +20,14 @@ sealed trait BinaryTree {
 }
 
 case class Leaf(v: Int) extends BinaryTree { //TODO:  последний элемент (все значения будут в листках)
-  override def toString: String = s"'$v'"
+  override def toString: String = {
+    s"'$v'"
+  }
 }
 case class Branch(left: BinaryTree, right: BinaryTree) extends BinaryTree { //
-  override def toString: String = s"$right $left"
+  override def toString: String = {
+    s"$right $left"
+  }
 }
 
 object BinaryTreeApp extends App {
