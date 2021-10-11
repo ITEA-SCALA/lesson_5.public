@@ -28,12 +28,14 @@ package com.itea.task1
 //case class Left[L, R](v: L) extends Either[L, R]
 //case class Right[L, R](v: R) extends Either[L, R]
 
-object EitherApp {
+object EitherApp extends App {
 
-  val a = 3
+  val a = 3 // '3' is Left(404)
+//  val a = 6 // '6' is Right(This is good)
   val valid: Either[Int, String] = //TODO:  левая часть - это ошибка; а правая часть - это все хорошо;
-    if (a > 5) Right("This is good")
+    if (5 < a) Right("This is good")
     else Left(404)
+  println( s"'${a}' is " + valid)
 
   sealed trait DomainError
   case class DbError(err: String) extends DomainError
