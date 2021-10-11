@@ -46,6 +46,7 @@ object EitherApp extends App {
   val validUser: Either[DomainError, User] =
     if (emptyNameUser.name.isEmpty) Left(DbError("DB error non empty!"))
     else Right(emptyNameUser)
+  println( validUser )
 
   // три параметра принимается
   Either.cond(
