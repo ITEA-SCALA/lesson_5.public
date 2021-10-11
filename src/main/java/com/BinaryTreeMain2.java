@@ -50,11 +50,15 @@ class BinaryTreeMain2 {
 
         // Основная функция для печати путей от корневого узла до каждого листового узла
         printTraverse(root, new ArrayList());
-        System.out.println(traverses);
-        System.out.println();
+//        System.out.println(traverses);
+//        System.out.println();
 
+        for (List arr: getTraverseAsTree(traverses)) System.out.println(arr);
+    }
 
+    static List<List> getTraverseAsTree(List<List> traverses) {
         List<List> allTraversePrint = new ArrayList<>();
+
         for (int iTraversePrint = 0; iTraversePrint < 10; iTraversePrint++) {
             List traversePrint = new ArrayList<>();
             for (List arr: traverses) {
@@ -66,11 +70,11 @@ class BinaryTreeMain2 {
             if (!traversePrint.isEmpty()) allTraversePrint.add(traversePrint);
         }
 
-        for (List arr: allTraversePrint) System.out.println(arr);
+        return allTraversePrint;
     }
 
     // Рекурсивная функция для поиска путей от корневого узла до каждого листового узла
-    public static void printTraverse(Node node, List path) {
+    static void printTraverse(Node node, List path) {
         if (node == null) return; // base case
 
         path.add(node.data); // включить текущий узел в путь
