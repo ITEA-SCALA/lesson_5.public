@@ -33,6 +33,7 @@ class BinaryTreeMain2 {
         root.right.left.left = new Node(8);
         root.right.right.right = new Node(9);
 
+        System.out.println(root);
         root.print();
     }
 }
@@ -45,6 +46,15 @@ class Node {
 
     public Node(int data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "'" + data + "'" +
+                (left!=null ? ", L="+left : "") +
+                (right!=null ? ", B="+right : "") +
+                '}';
     }
 
     void print() {
