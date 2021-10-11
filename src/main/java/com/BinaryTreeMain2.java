@@ -42,10 +42,10 @@ class BinaryTreeMain2 {
         root.right.right = new Node(7);
         root.right.right.right = new Node(9);
 
-        for (List arr: getTraverseAsTree(root)) System.out.println(arr);
+        print(root);
     }
 
-    static List<List> getTraverseAsTree(Node root) {
+    static void print(Node root) {
         getTraverse(root, new ArrayList());
 //        System.out.println(traverses);
 
@@ -62,7 +62,7 @@ class BinaryTreeMain2 {
             if (!traversePrint.isEmpty()) allTraversePrint.add(traversePrint);
         }
 
-        return allTraversePrint;
+        for (List arr: allTraversePrint) System.out.println(arr);
     }
 
     /*
