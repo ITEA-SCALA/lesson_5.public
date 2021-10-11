@@ -19,6 +19,7 @@ class Node {
 }
 
 class BinaryTreeMain2 {
+    static List<List> traverses = new ArrayList();
 
     public static void main(String[] args) {
 /*
@@ -53,22 +54,20 @@ class BinaryTreeMain2 {
         System.out.println();
 
 
-        List<List> arrTraversePrint = new ArrayList<>();
-        for (int iArrTraversePrint=0; iArrTraversePrint<4; iArrTraversePrint++) {
+        List<List> allTraversePrint = new ArrayList<>();
+        for (int iTraversePrint = 0; iTraversePrint < 10; iTraversePrint++) {
             List traversePrint = new ArrayList<>();
             for (List arr: traverses) {
                 try {
-                    int objTraverse = (int) arr.get(iArrTraversePrint);
-                    if (!traversePrint.contains(objTraverse)) traversePrint.add(objTraverse);
+                    int valuePrint = (int) arr.get(iTraversePrint);
+                    if (!traversePrint.contains(valuePrint)) traversePrint.add(valuePrint);
                 } catch (Exception e) {}
             }
-            arrTraversePrint.add(traversePrint);
+            if (!traversePrint.isEmpty()) allTraversePrint.add(traversePrint);
         }
 
-        for (List arr: arrTraversePrint) System.out.println(arr);
+        for (List arr: allTraversePrint) System.out.println(arr);
     }
-
-    static List<List> traverses = new ArrayList();
 
     // Рекурсивная функция для поиска путей от корневого узла до каждого листового узла
     public static void printTraverse(Node node, List path) {
