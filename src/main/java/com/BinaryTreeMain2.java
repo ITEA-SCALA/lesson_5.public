@@ -47,16 +47,10 @@ class BinaryTreeMain2 {
         root.right.right = new Node(7);
         root.right.right.right = new Node(9);
 
-        // print all root-to-leaf paths
-        printRootToleafPaths(root);
-    }
-
-    static List<List> traverses = new ArrayList();
-
-    // Основная функция для печати путей от корневого узла до каждого листового узла
-    public static void printRootToleafPaths(Node node) {
-        printRootToleafPaths(node, new ArrayList()); // list to store root-to-leaf path
+        // Основная функция для печати путей от корневого узла до каждого листового узла
+        printTraverse(root, new ArrayList());
         System.out.println(traverses);
+        System.out.println();
 
 
         List<List> arrTraversePrint = new ArrayList<>();
@@ -74,26 +68,18 @@ class BinaryTreeMain2 {
         for (List arr: arrTraversePrint) System.out.println(arr);
     }
 
+    static List<List> traverses = new ArrayList();
+
     // Рекурсивная функция для поиска путей от корневого узла до каждого листового узла
-    public static void printRootToleafPaths(Node node, List path) { //public static void printRootToleafPaths(Node node, Deque<Integer> path) {
+    public static void printTraverse(Node node, List path) {
         if (node == null) return; // base case
 
         path.add(node.data); // включить текущий узел в путь
-        if (isLeaf(node)) {
-            traverses.add(Arrays.asList(path.toArray())); //TODO: если листовой узел найден, вывести путь
+        if (node.left == null && node.right == null) traverses.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден, вывести путь
 
-        }
+        printTraverse(node.left, path); // base case
+        printTraverse(node.right, path); // base case
 
-        // recur for the left and right subtree
-        printRootToleafPaths(node.left, path);
-        printRootToleafPaths(node.right, path);
-
-        // backtrack: удалить текущий узел после левого и правого поддерева.
-        path.remove(path.size()-1);
-    }
-
-    // Функция для проверки, является ли данный узел листовым узлом или нет
-    public static boolean isLeaf(Node node) {
-        return (node.left == null && node.right == null);
+        path.remove( path.size()-1 ); // backtrack: удалить текущий узел после левого и правого поддерева.
     }
 }
