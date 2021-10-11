@@ -10,8 +10,8 @@ case class Something4(
 
 // Algebraic Data Types
 // Property Based Testing <-
-sealed trait User
-case object Anonymous extends User
-case object LoggedUser extends User
-case object Admin extends User
-case class Client(id: Int) extends User
+sealed trait User2
+case object Anonymous extends User2
+case object LoggedUser extends User2
+case object Admin extends User2
+case class Client(id: Int) extends User2

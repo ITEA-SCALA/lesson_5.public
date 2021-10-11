@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @see https://www.techiedelight.com/print-all-paths-from-root-to-leaf-nodes-binary-tree/
- *
+ * Программа на Java для обхода двоичного дерева
+ * Применяется обход по порядку и печать всех узлов в отсортированном порядке
           1
         /   \
        /     \
@@ -16,7 +16,7 @@ import java.util.List;
            /     \
           8       9
 */
-class BinaryTreeMain2 {
+class BinaryTree {
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -34,7 +34,7 @@ class BinaryTreeMain2 {
         root.right.right.right = new Node(9);
 
         System.out.println(root);
-        root.print();
+        root.prettyPrint();
     }
 }
 
@@ -57,9 +57,9 @@ class Node {
                 '}';
     }
 
-    void print() {
+    void prettyPrint() {
         int branchDepth = 10;
-        print(this, new ArrayList());
+        prettyPrint(this, new ArrayList());
         List<List> allTraversePrint = new ArrayList<>();
 
         for (int iTraversePrint = 0; iTraversePrint < branchDepth; iTraversePrint++) {
@@ -76,15 +76,15 @@ class Node {
         for (List arr: allTraversePrint) System.out.println(arr);
     }
 
-    void print(Node node, List path) {
+    void prettyPrint(Node node, List path) {
         if (node == null) return; // base case
 
-        path.add(node.data); // включить текущий узел в путь
-        if (node.left == null && node.right == null) traverses.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден, вывести путь
+        path.add(node.data); //TODO: добавить текущий узел в путь
+        if (node.left == null && node.right == null) traverses.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
 
-        print(node.left, path); // base case
-        print(node.right, path); // base case
+        prettyPrint(node.left, path); // base case
+        prettyPrint(node.right, path); // base case
 
-        path.remove( path.size()-1 ); // backtrack: удалить текущий узел после левого и правого поддерева.
+        path.remove( path.size()-1 ); //TODO: удалить текущий узел после левого и правого поддерева.
     }
 }

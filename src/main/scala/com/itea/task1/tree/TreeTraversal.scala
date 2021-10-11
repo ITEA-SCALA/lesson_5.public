@@ -7,7 +7,6 @@ package com.itea.task1.tree
  *      https://codereview.stackexchange.com/questions/62744/bfs-tree-traversal-scala
  */
 
-import scala.+:
 import scala.annotation.tailrec
 
 object TreeTraversal extends App {
