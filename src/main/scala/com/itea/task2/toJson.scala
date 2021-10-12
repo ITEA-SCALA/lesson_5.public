@@ -36,4 +36,4 @@ object ToJsonApp extends App {
   println( JsonObject().getOrElse(None) )              // (Object) null
 }
 
-case class Tmp(id: Int)
+private case class Tmp(id: Int)
