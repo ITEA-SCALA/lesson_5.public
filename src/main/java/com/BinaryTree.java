@@ -33,7 +33,7 @@ class BinaryTree {
         root.right.left.left = new Node(8);
         root.right.right.right = new Node(9);
 
-        System.out.println(root); // {'1', L={'2', L={'4'}, B={'5'}}, B={'3', L={'6', L={'8'}}, B={'7', B={'9'}}}}
+//        System.out.println(root); // {'1', L={'2', L={'4'}, B={'5'}}, B={'3', L={'6', L={'8'}}, B={'7', B={'9'}}}}
         root.prettyPrint();
     }
 }
@@ -60,20 +60,20 @@ class Node {
     void prettyPrint() {
         int maxDepthNodeTree = 10;
         prettyPrint(this, new ArrayList());
-        List<List> allTreePrint = new ArrayList<>();
+        List<List> prettyTree = new ArrayList<>();
 
-        for (int iTraversePrint = 0; iTraversePrint < maxDepthNodeTree; iTraversePrint++) {
-            List treePrint = new ArrayList<>();
+        for (int depthNodeTree = 0; depthNodeTree < maxDepthNodeTree; depthNodeTree++) {
+            List prettyPath = new ArrayList<>();
             for (List path: nodeTree) {
                 try {
-                    int valuePrint = (int) path.get(iTraversePrint);
-                    if (!treePrint.contains(valuePrint)) treePrint.add(valuePrint);
+                    int value = (int) path.get(depthNodeTree);
+                    if (!prettyPath.contains(value)) prettyPath.add(value);
                 } catch (Exception e) {}
             }
-            if (!treePrint.isEmpty()) allTreePrint.add(treePrint);
+            if (!prettyPath.isEmpty()) prettyTree.add(prettyPath);
         }
 
-        for (List arr: allTreePrint) System.out.println(arr);
+        for (List arr: prettyTree) System.out.println(arr);
     }
 
     void prettyPrint(Node node, List path) {
