@@ -1,7 +1,5 @@
 package com.itea.task2
 
-import com.itea
-
 sealed trait Json {
 
   def getOrElse(empty: Any): String = this match {
