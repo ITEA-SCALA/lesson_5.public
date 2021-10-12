@@ -73,7 +73,7 @@ class Node {
             if (!prettyPath.isEmpty()) prettyTree.add(prettyPath);
         }
 
-        for (List path: prettyTree) System.out.println(path);
+        for (List l: prettyTree) System.out.println(l);
     }
 
     void prettyPrint(Node node, List path) {
