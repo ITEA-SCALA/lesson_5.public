@@ -4,13 +4,13 @@ sealed trait Json {
 
   def getOrElse(empty: Any): String = this match {
     case JsonNumeric(key, value) => "(Numeric) " + key + ":" + value
-    case JsonString(key, value) if value!=null => "(String) \"" + key + ":" + value + "\""
-    case JsonBoolean(key, value) if value!=null => "(Boolean) " + key + ":" + value
+    case JsonString(key, value)   if value!=null => "(String) \"" + key + ":" + value + "\""
+    case JsonBoolean(key, value)  if value!=null => "(Boolean) " + key + ":" + value
     case JsonArray(key, values)  if values!=null => "(Array) " + key + ":" + "[" + values.mkString(", ") + "]"
-    case JsonObject(key, value)  if value!=null => "(Object) " + key + ":{" + value + "}"
-    case None               => empty.toString
-//    case _                  => null
-    case _                  => empty.toString
+    case JsonObject(key, value)   if value!=null => "(Object) " + key + ":{" + value + "}"
+    case None                    => empty.toString
+//    case _                       => null
+    case _                       => empty.toString
   }
 }
 
