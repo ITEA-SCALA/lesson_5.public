@@ -1,12 +1,14 @@
 package com.itea.task2
 
+import com.itea
+
 sealed trait Json {
 
   def getOrElse(empty: Any): String = this match {
     case JsonNumeric(value) => "(Numeric) " + value
     case JsonString(value) if value!=null => "(String) \"" + value + "\""
-    case JsonBoolean(value) => "(Boolean) " + value
-    case JsonArray(values)  => "(Array) [" + values.mkString(", ") + "]"
+    case JsonBoolean(value) if value!=null => "(Boolean) " + value
+    case JsonArray(values)  if values!=null => "(Array) [" + values.mkString(", ") + "]"
     case JsonObject(value)  => "(Object) " + value
     case None               => empty.toString
     case _                  => null
@@ -14,20 +16,24 @@ sealed trait Json {
 }
 
 case object None extends Json
-case class JsonNumeric(value: Integer) extends Json
-case class JsonString(value: String) extends Json
-case class JsonBoolean(value: Boolean) extends Json
-case class JsonArray(values: Array[Any]) extends Json
-case class JsonObject(value: AnyRef) extends Json
+case class JsonNumeric(value: Integer = 0) extends Json
+case class JsonString(value: String = null) extends Json
+case class JsonBoolean(value: Boolean = false) extends Json
+case class JsonArray(values: Array[Any] = null) extends Json
+case class JsonObject(value: AnyRef = null) extends Json
 
 object ToJsonApp extends App {
-  println( None.getOrElse(None) )                       // None
-  println( JsonString(null).getOrElse(None) )           // null
-  println( JsonNumeric(100).getOrElse(None) )           // (Numeric) 100
-  println( JsonString("Hello").getOrElse(None) )        // (String) Hello
-  println( JsonBoolean(true).getOrElse(None) )          // (Boolean) true
-  println( JsonArray(Array(1, 2, 3)).getOrElse(None) )  // (Array) [1, 2, 3]
-  println( JsonObject(new Tmp(1)).getOrElse(None) ) // (Object) Tmp(1)
+  println( None.getOrElse(None) )                      // None
+  println( JsonNumeric(100).getOrElse(None) )          // (Numeric) 100
+  println( JsonNumeric().getOrElse(None) )             // 0
+  println( JsonString("Hello").getOrElse(None) )       // (String) Hello
+  println( JsonString().getOrElse(None) )              // null
+  println( JsonBoolean(true).getOrElse(None) )         // (Boolean) true
+  println( JsonBoolean().getOrElse(None) )             // (Boolean) false
+  println( JsonArray(Array(1, 2, 3)).getOrElse(None) ) // (Array) [1, 2, 3]
+  println( JsonArray().getOrElse(None) )               // null
+  println( JsonObject(Tmp(1)).getOrElse(None) )        // (Object) Tmp(1)
+  println( JsonObject().getOrElse(None) )              // (Object) null
 }
 
 case class Tmp(id: Int)
