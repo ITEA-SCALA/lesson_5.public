@@ -19,6 +19,7 @@ import java.util.List;
 class BinaryTree {
 
     public static void main(String[] args) {
+        //TODO: построить бинарное дерево
         Node root = new Node(1);
 
         root.left = new Node(2);
@@ -34,8 +35,10 @@ class BinaryTree {
         root.right.right.right = new Node(9);
 
 //        System.out.println(root); // {val:'1', L:{val:'2', L:{val:'4'}, R:{val:'5'}}, R:{val:'3', L:{val:'6', L:{val:'8'}}, R:{val:'7', R:{val:'9'}}}}
+        //TODO: обход дерева по порядку
         List<List> nodeTree = treeTraversal(root, new ArrayList(), new ArrayList());
 //        System.out.println( nodeTree ); // [[1, 2, 4], [1, 2, 5], [1, 3, 6, 8], [1, 3, 7, 9]]
+        //TODO: печать всех узлов в отсортированном порядке
         root.prettyPrint(nodeTree, 5);
     }
 
