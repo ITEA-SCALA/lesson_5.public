@@ -66,8 +66,8 @@ class Node {
     public String toString() {
         return "{" +
                 "val:'" + value + "'" +
-                (left!=null ? ", L:"+left : "") +
-                (right!=null ? ", R:"+right : "") +
+                (left!=null ? ", L:" + left : "") +
+                (right!=null ? ", R:" + right : "") +
                 '}';
     }
 
