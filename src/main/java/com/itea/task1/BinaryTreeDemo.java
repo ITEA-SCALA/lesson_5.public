@@ -1,4 +1,4 @@
-package com;
+package com.itea.task1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import java.util.List;
            /     \
           8       9
 */
-class BinaryTree {
+class BinaryTreeDemo {
 
     public static void main(String[] args) {
         //TODO: построить бинарное дерево
