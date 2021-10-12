@@ -7,6 +7,7 @@ sealed trait Json {
     case JsonString(value) if value!=null => "(String) \"" + value + "\""
     case JsonBoolean(value) => "(Boolean) " + value
     case JsonArray(values)  => "(Array) [" + values.mkString(", ") + "]"
+    case JsonObject(value)  => "(Object) " + value
     case None               => empty.toString
     case _                  => null
   }
@@ -17,12 +18,16 @@ case class JsonNumeric(value: Integer) extends Json
 case class JsonString(value: String) extends Json
 case class JsonBoolean(value: Boolean) extends Json
 case class JsonArray(values: Array[Any]) extends Json
+case class JsonObject(value: AnyRef) extends Json
 
 object ToJsonApp extends App {
-  println( None.getOrElse(None) )                      // None
-  println( JsonString(null).getOrElse(None) )          // null
-  println( JsonNumeric(100).getOrElse(None) )          // (Numeric) 100
-  println( JsonString("Hello").getOrElse(None) )       // (String) Hello
-  println( JsonBoolean(true).getOrElse(None) )         // (Boolean) true
-  println( JsonArray(Array(1, 2, 3)).getOrElse(None) ) // (Array) [1, 2, 3]
+  println( None.getOrElse(None) )                       // None
+  println( JsonString(null).getOrElse(None) )           // null
+  println( JsonNumeric(100).getOrElse(None) )           // (Numeric) 100
+  println( JsonString("Hello").getOrElse(None) )        // (String) Hello
+  println( JsonBoolean(true).getOrElse(None) )          // (Boolean) true
+  println( JsonArray(Array(1, 2, 3)).getOrElse(None) )  // (Array) [1, 2, 3]
+  println( JsonObject(new Tmp(1)).getOrElse(None) ) // (Object) Tmp(1)
 }
+
+case class Tmp(id: Int)
