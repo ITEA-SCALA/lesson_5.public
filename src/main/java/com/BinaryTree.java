@@ -33,7 +33,7 @@ class BinaryTree {
         root.right.left.left = new Node(8);
         root.right.right.right = new Node(9);
 
-        System.out.println(root);
+        System.out.println(root); // {'1', L={'2', L={'4'}, B={'5'}}, B={'3', L={'6', L={'8'}}, B={'7', B={'9'}}}}
         root.prettyPrint();
     }
 }
@@ -42,7 +42,7 @@ class Node {
     public int data;
     public Node left;
     public Node right;
-    private List<List> traverses = new ArrayList();
+    private List<List> tree = new ArrayList();
 
     public Node(int data) {
         this.data = data;
@@ -60,27 +60,27 @@ class Node {
     void prettyPrint() {
         int branchDepth = 10;
         prettyPrint(this, new ArrayList());
-        List<List> allTraversePrint = new ArrayList<>();
+        List<List> allTreePrint = new ArrayList<>();
 
         for (int iTraversePrint = 0; iTraversePrint < branchDepth; iTraversePrint++) {
-            List traversePrint = new ArrayList<>();
-            for (List arr: traverses) {
+            List treePrint = new ArrayList<>();
+            for (List list: tree) {
                 try {
-                    int valuePrint = (int) arr.get(iTraversePrint);
-                    if (!traversePrint.contains(valuePrint)) traversePrint.add(valuePrint);
+                    int valuePrint = (int) list.get(iTraversePrint);
+                    if (!treePrint.contains(valuePrint)) treePrint.add(valuePrint);
                 } catch (Exception e) {}
             }
-            if (!traversePrint.isEmpty()) allTraversePrint.add(traversePrint);
+            if (!treePrint.isEmpty()) allTreePrint.add(treePrint);
         }
 
-        for (List arr: allTraversePrint) System.out.println(arr);
+        for (List arr: allTreePrint) System.out.println(arr);
     }
 
     void prettyPrint(Node node, List path) {
         if (node == null) return; // base case
 
         path.add(node.data); //TODO: добавить текущий узел в путь
-        if (node.left == null && node.right == null) traverses.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
+        if (node.left == null && node.right == null) tree.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
 
         prettyPrint(node.left, path); // base case
         prettyPrint(node.right, path); // base case
