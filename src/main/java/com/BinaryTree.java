@@ -58,10 +58,10 @@ class Node {
     }
 
     void prettyPrint() {
-        int maxDepthNodeTree = 10;
-        prettyPrint(this, new ArrayList());
         List<List> prettyTree = new ArrayList<>();
 
+        int maxDepthNodeTree = 10;
+        prettyPrint(this, new ArrayList());
         for (int depthNodeTree = 0; depthNodeTree < maxDepthNodeTree; depthNodeTree++) {
             List prettyPath = new ArrayList<>();
             for (List path: nodeTree) {
