@@ -36,7 +36,7 @@ class BinaryTree {
 //        System.out.println(root); // {val:'1', L:{val:'2', L:{val:'4'}, R:{val:'5'}}, R:{val:'3', L:{val:'6', L:{val:'8'}}, R:{val:'7', R:{val:'9'}}}}
         List<List> nodeTree = treeTraversal(root, new ArrayList(), new ArrayList());
 //        System.out.println( nodeTree ); // [[1, 2, 4], [1, 2, 5], [1, 3, 6, 8], [1, 3, 7, 9]]
-        root.prettyPrint(nodeTree);
+        root.prettyPrint(nodeTree, 5);
     }
 
     static List<List> treeTraversal(Node node, List path, List<List> nodeTree) {
@@ -71,10 +71,9 @@ class Node {
                 '}';
     }
 
-    void prettyPrint(List<List> nodeTree) {
+    void prettyPrint(List<List> nodeTree, int maxDepthNodeTree) {
         List<List> prettyTree = new ArrayList<>();
 
-        int maxDepthNodeTree = 10;
         for (int depthNodeTree = 0; depthNodeTree < maxDepthNodeTree; depthNodeTree++) {
             List prettyPath = new ArrayList<>();
             for (List path: nodeTree) {
