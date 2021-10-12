@@ -1,4 +1,4 @@
-package com.itea.task1
+package com.itea
 
 case class Something4(
    str: String, // Infinity

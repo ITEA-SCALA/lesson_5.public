@@ -1,4 +1,4 @@
-package com.itea.task1
+package com.itea
 
 /**
  * @see https://www.optics.dev/Monocle/
