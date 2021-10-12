@@ -39,34 +39,34 @@ class BinaryTree {
 }
 
 class Node {
-    public int data;
+    public int value;
     public Node left;
     public Node right;
-    private List<List> tree = new ArrayList();
+    private List<List> nodeTree = new ArrayList();
 
-    public Node(int data) {
-        this.data = data;
+    public Node(int value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "'" + data + "'" +
+                "'" + value + "'" +
                 (left!=null ? ", L="+left : "") +
                 (right!=null ? ", B="+right : "") +
                 '}';
     }
 
     void prettyPrint() {
-        int branchDepth = 10;
+        int maxDepthNodeTree = 10;
         prettyPrint(this, new ArrayList());
         List<List> allTreePrint = new ArrayList<>();
 
-        for (int iTraversePrint = 0; iTraversePrint < branchDepth; iTraversePrint++) {
+        for (int iTraversePrint = 0; iTraversePrint < maxDepthNodeTree; iTraversePrint++) {
             List treePrint = new ArrayList<>();
-            for (List list: tree) {
+            for (List path: nodeTree) {
                 try {
-                    int valuePrint = (int) list.get(iTraversePrint);
+                    int valuePrint = (int) path.get(iTraversePrint);
                     if (!treePrint.contains(valuePrint)) treePrint.add(valuePrint);
                 } catch (Exception e) {}
             }
@@ -79,8 +79,8 @@ class Node {
     void prettyPrint(Node node, List path) {
         if (node == null) return; // base case
 
-        path.add(node.data); //TODO: добавить текущий узел в путь
-        if (node.left == null && node.right == null) tree.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
+        path.add(node.value); //TODO: добавить текущий узел в путь
+        if (node.left == null && node.right == null) nodeTree.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
 
         prettyPrint(node.left, path); // base case
         prettyPrint(node.right, path); // base case
