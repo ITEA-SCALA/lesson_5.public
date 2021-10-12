@@ -33,7 +33,7 @@ class BinaryTree {
         root.right.left.left = new Node(8);
         root.right.right.right = new Node(9);
 
-//        System.out.println(root); // {'1', L={'2', L={'4'}, B={'5'}}, B={'3', L={'6', L={'8'}}, B={'7', B={'9'}}}}
+        System.out.println(root); // {val:'1', L:{val:'2', L:{val:'4'}, R:{val:'5'}}, R:{val:'3', L:{val:'6', L:{val:'8'}}, R:{val:'7', R:{val:'9'}}}}
         root.prettyPrint();
     }
 }
@@ -51,9 +51,9 @@ class Node {
     @Override
     public String toString() {
         return "{" +
-                "'" + value + "'" +
-                (left!=null ? ", L="+left : "") +
-                (right!=null ? ", B="+right : "") +
+                "val:'" + value + "'" +
+                (left!=null ? ", L:"+left : "") +
+                (right!=null ? ", R:"+right : "") +
                 '}';
     }
 
@@ -61,7 +61,7 @@ class Node {
         List<List> prettyTree = new ArrayList<>();
 
         int maxDepthNodeTree = 10;
-        prettyPrint(this, new ArrayList());
+        treeTraversal(this, new ArrayList());
         for (int depthNodeTree = 0; depthNodeTree < maxDepthNodeTree; depthNodeTree++) {
             List prettyPath = new ArrayList<>();
             for (List path: nodeTree) {
@@ -76,14 +76,14 @@ class Node {
         for (List l: prettyTree) System.out.println(l);
     }
 
-    void prettyPrint(Node node, List path) {
+    void treeTraversal(Node node, List path) {
         if (node == null) return; // base case
 
         path.add(node.value); //TODO: добавить текущий узел в путь
         if (node.left == null && node.right == null) nodeTree.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
 
-        prettyPrint(node.left, path); // base case
-        prettyPrint(node.right, path); // base case
+        treeTraversal(node.left, path); // base case
+        treeTraversal(node.right, path); // base case
 
         path.remove( path.size()-1 ); //TODO: удалить текущий узел после левого и правого поддерева.
     }
