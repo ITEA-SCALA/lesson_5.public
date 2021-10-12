@@ -33,8 +33,23 @@ class BinaryTree {
         root.right.left.left = new Node(8);
         root.right.right.right = new Node(9);
 
-        System.out.println(root); // {val:'1', L:{val:'2', L:{val:'4'}, R:{val:'5'}}, R:{val:'3', L:{val:'6', L:{val:'8'}}, R:{val:'7', R:{val:'9'}}}}
-        root.prettyPrint();
+//        System.out.println(root); // {val:'1', L:{val:'2', L:{val:'4'}, R:{val:'5'}}, R:{val:'3', L:{val:'6', L:{val:'8'}}, R:{val:'7', R:{val:'9'}}}}
+        List<List> nodeTree = treeTraversal(root, new ArrayList(), new ArrayList());
+//        System.out.println( nodeTree ); // [[1, 2, 4], [1, 2, 5], [1, 3, 6, 8], [1, 3, 7, 9]]
+        root.prettyPrint(nodeTree);
+    }
+
+    static List<List> treeTraversal(Node node, List path, List<List> nodeTree) {
+        if (node != null) { // base case
+            path.add(node.value); //TODO: добавить текущий узел в путь
+            if (node.left == null && node.right == null) nodeTree.add(Arrays.asList(path.toArray())); //TODO: если листовой узел найден тогда вывести путь
+
+            treeTraversal(node.left, path, nodeTree); // base case
+            treeTraversal(node.right, path, nodeTree); // base case
+
+            path.remove(path.size() - 1); //TODO: удалить текущий узел после левого и правого поддерева.
+        }
+        return nodeTree;
     }
 }
 
@@ -42,7 +57,6 @@ class Node {
     public int value;
     public Node left;
     public Node right;
-    private List<List> nodeTree = new ArrayList();
 
     public Node(int value) {
         this.value = value;
@@ -57,11 +71,10 @@ class Node {
                 '}';
     }
 
-    void prettyPrint() {
+    void prettyPrint(List<List> nodeTree) {
         List<List> prettyTree = new ArrayList<>();
 
         int maxDepthNodeTree = 10;
-        treeTraversal(this, new ArrayList());
         for (int depthNodeTree = 0; depthNodeTree < maxDepthNodeTree; depthNodeTree++) {
             List prettyPath = new ArrayList<>();
             for (List path: nodeTree) {
@@ -74,17 +87,5 @@ class Node {
         }
 
         for (List l: prettyTree) System.out.println(l);
-    }
-
-    void treeTraversal(Node node, List path) {
-        if (node == null) return; // base case
-
-        path.add(node.value); //TODO: добавить текущий узел в путь
-        if (node.left == null && node.right == null) nodeTree.add( Arrays.asList(path.toArray()) ); //TODO: если листовой узел найден тогда вывести путь
-
-        treeTraversal(node.left, path); // base case
-        treeTraversal(node.right, path); // base case
-
-        path.remove( path.size()-1 ); //TODO: удалить текущий узел после левого и правого поддерева.
     }
 }
