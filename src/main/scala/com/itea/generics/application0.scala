@@ -70,7 +70,7 @@ sealed trait Option[+T] {
   case object None extends Option[Nothing]
   case class Some[T](value: T) extends Option[T]
 
-object Application extends App {
+object Application0 extends App {
 
   /*
    *TODO: Анонимная функция - это такой тип который можно передавать в качестве параметров (например, в методе...)
