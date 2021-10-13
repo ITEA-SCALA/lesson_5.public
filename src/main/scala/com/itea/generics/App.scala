@@ -73,6 +73,41 @@ sealed trait Option[+T] {
 
 object Application extends App {
 
+  /*
+   *TODO: Анонимная функция - это такой тип который можно передавать в качестве параметров
+   *TODO:                   - вычисления для анонимной функции всегда будут ленивые И выполняются позже, в месте непосредственного вызова-использования
+   */
+//  val add: (Int, Int) => Int = (a: Int, b: Int) => { a + b }
+  /*
+   *TODO: вот так объявляется анонимная функция 'add'
+   *TODO: левое выражение, перед знаком '=' является типом для анонимной функции                   (Int, Int) => Int
+   *TODO: правое выражение, после знака '=' является определением для анонимной функции            (a: Int, b: Int) => { a + b }
+   *TODO:                                   где в левой ее части, перед знаком '=>' - значение     (a: Int, b: Int)
+   *TODO:                                       а в правой ее части, после знака '=>' - выражение  { a + b }
+   */
+  val add = (a: Int, b: Int) => a + b //TODO: такую анонимную функцию можно записать короче, через синтаксический сахар (учитывая что Scala сама умеет подставлять типы...)
+
+  println( add(3, 7) ) // 10
+
+//  trait Clazz[P] {
+//    val addFun: P => P
+//  }
+//
+////  class SomeClazz[P] extends Clazz[P] {
+////    override val addFun: P => P = _
+////  }
+
+
+
+//  def func1(f: Int => Boolean): Unit = println( f(1) ) // true
+  def func1(f: Int => Boolean): Unit = println( f(20) )  // false
+  val aaa1 = (a: Int) => a < 10
+  func1(aaa1)
+
+//  var sumIt: (Int => Int) = (x: Int) => { if(x<=1) 1 else sumIt(x-1)+x }
+//  println( sumIt(5) ) // 15
+
+
   val tryThis = Some(3)   // Some(3)
 //  val tryThis = Some(6) // None
   println( tryThis.filter(i => i < 5) ) //TODO: (i => i < 5) это реализация анонимной функции, где в левой части (перед знаком '=>') - значение, а в правой части (после знака '=>') - выражение
