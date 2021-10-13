@@ -65,7 +65,6 @@ sealed trait Option[+T] {
     case Some(v) if func(v) => this
     case _ => None
   }
-
 }
 
   case object None extends Option[Nothing]
@@ -96,11 +95,12 @@ object Application extends App {
    *TODO: объявление анонимной функции       func1: (Int, Int) => Int
    *TODO: вызов анонимной функции            func1(v1, v2)
    */
-  def operation(v1: Int, v2: Int, func1: (Int, Int) => Int): Int = { func1(v1, v2) }
+  def operation(v1: Int, v2: Int, func1: (Int, Int) => Boolean): Boolean = { func1(v1, v2) }
   /*
    *TODO: передача выражения для анонимной функции
    */
-  println( operation(3, 4, (v1,v2) => v1 + v2) ) // 7
+  println( operation(3, 4, (v1,v2) => v1 == v2) ) // false
+  println( operation(3, 3, (v1,v2) => v1 == v2) ) // true
 
 //  trait Clazz[P] {
 //    val addFun: P => P
