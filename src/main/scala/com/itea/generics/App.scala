@@ -95,7 +95,8 @@ object Application extends App {
    *TODO: объявление анонимной функции       func1: (Int, Int) => Int
    *TODO: вызов анонимной функции            func1(v1, v2)
    */
-  def operation(v1: Int, v2: Int, func1: (Int, Int) => Boolean): Boolean = { func1(v1, v2) }
+//  def operation(v1: Int, v2: Int, func1: (Int, Int) => Boolean): Boolean = { func1(v1, v2) }
+  def operation(v1: Int, v2: Int, func1: (Int,Int) => Boolean) = func1(v1, v2) //TODO: такую анонимную функцию можно записать короче, через синтаксический сахар (учитывая что Scala сама умеет подставлять типы...)
   /*
    *TODO: передача выражения для анонимной функции
    */
