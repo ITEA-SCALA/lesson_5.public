@@ -103,15 +103,6 @@ object Application extends App {
   println( operation(3, 4, (v1,v2) => v1 == v2) ) // false
   println( operation(3, 3, (v1,v2) => v1 == v2) ) // true
 
-//  trait Clazz[P] {
-//    val addFun: P => P
-//  }
-//
-////  class SomeClazz[P] extends Clazz[P] {
-////    override val addFun: P => P = _
-////  }
-
-
 
 //  def func1(f: Int => Boolean): Unit = println( f(1) ) // true
   def func1(f: Int => Boolean): Unit = println( f(20) )  // false
