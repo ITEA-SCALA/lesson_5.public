@@ -19,8 +19,8 @@ object Application1 extends App {
   println( last(list, i => i-1) ) // 8
 
   def lastRecursive[T](ls: List[T]): T = ls match {
-    case h :: Nil => h              //TODO: а в случае когда дошли до крайнего элемента 'Nil', тогда в этом случае возвращаем его предшественника
-    case _ :: t => lastRecursive(t) //TODO: в case получаем какой то список '_'  дальше вызываем метод next '::' следующий элемент списка...  sound because `next` is used only locally
+    case h :: Nil => h              //TODO: [здесь инфиксная операция для работы со списком типа 'val l = 1 :: 2 :: 3 :: Nil'] а в случае когда дошли до крайнего элемента 'Nil', тогда в этом случае возвращаем его предшественника
+    case _ :: t => lastRecursive(t) //TODO: [здесь инфиксная операция для работы со списком типа 'val l = 1 :: 2 :: 3 :: Nil'] в case получаем какой то список '_'  дальше вызываем метод next '::' следующий элемент списка...  sound because `next` is used only locally
   }
 
   println( "lastRecursive = " + lastRecursive(list) )
